@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { baseUrl } from "../../config/constants";
 
+import def from "@/assets/vite.svg";
+
 type Props = {
 	post: FullPost;
 };
@@ -262,7 +264,11 @@ const SinglePost = ({ post }: Props) => {
 									<div className="author-box-style-1 mb--50">
 										<div className="author-img">
 											<Image
-												src={post.author.profile_pic}
+												src={
+													post.author.profile_pic
+														? post.author.profile_pic
+														: def
+												}
 												alt="author-img"
 												width="170"
 												height="170"
