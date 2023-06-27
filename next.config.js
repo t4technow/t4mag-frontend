@@ -5,19 +5,18 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "http",
-				hostname: "10.0.11.172",
-				port: "5555",
-				pathname: "/media/**",
-			},
-			{
-				protocol: "http",
 				hostname: "127.0.0.1",
 				port: "5555",
 				pathname: "/media/**",
 			},
 			{
 				protocol: "https",
-				hostname: "api.t4technow.tk",
+				hostname: "api.t4technow.com",
+				pathname: "/media/**",
+			},
+			{
+				protocol: "http",
+				hostname: "api.t4technow.com",
 				pathname: "/media/**",
 			},
 		],
