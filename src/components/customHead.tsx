@@ -42,12 +42,12 @@ const CustomHead = ({ title, desc, author }: Props) => {
 						: "Tech blog covering latest news, reviews and tutorials related to technology."
 				}
 			/>
-			<meta property="og:image" content="http://t4technow.tk/logo-dark.png" />
+			<meta property="og:image" content="http://t4technow.com/logo-dark.png" />
 			<meta
 				property="og:image:secure_url"
-				content="https://t4technow.tk/logo-dark.png"
+				content="https://t4technow.com/logo-dark.png"
 			/>
-			<meta property="og:url" content="https://t4technow.tk/" />
+			<meta property="og:url" content="https://t4technow.com/" />
 			<meta property="og:type" content="website" />
 			<meta name="twitter:card" content="summary_large_image" />
 			<meta name="twitter:title" content="T4Technow" />
@@ -59,9 +59,9 @@ const CustomHead = ({ title, desc, author }: Props) => {
 						: "Tech blog covering latest news, reviews and tutorials related to technology."
 				}
 			/>
-			<meta name="twitter:image" content="http://t4technow.tk/logo-dark.png" />
+			<meta name="twitter:image" content="http://t4technow.com/logo-dark.png" />
 
-			<link rel="canonical" href="https://t4technow.tk"></link>
+			<link rel="canonical" href="https://t4technow.com"></link>
 		</Head>
 	);
 };
