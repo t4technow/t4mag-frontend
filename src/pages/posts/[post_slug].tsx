@@ -30,7 +30,7 @@ const SinglePost = ({ post }: Props) => {
 
 	useEffect(() => {
 		fetchPostDetails();
-	}, [post.slug]);
+	}, []);
 
 	return (
 		<>
