@@ -9,6 +9,8 @@ import Style1 from "@/components/post/style1";
 import AdBanner from "@/components/adBanner";
 import UpperSideBar from "@/components/sections/sideBarUpper";
 
+import NextNProgress from "nextjs-progressbar";
+
 import { baseUrl } from "../config/constants";
 
 import { Category, Post } from "@/types";
@@ -23,9 +25,17 @@ type Props = {
 const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 	return (
 		<>
+			<NextNProgress
+				color="#29D"
+				startPosition={0.3}
+				stopDelayMs={200}
+				height={3}
+				showOnShallow={true}
+			/>
 			<CustomHead />
 
 			<Header posts={posts} />
+
 			<section
 				className="rt-feature-section feature-section-style-1 overflow-hidden"
 				data-bg-image="media/elements/element_1.png"
