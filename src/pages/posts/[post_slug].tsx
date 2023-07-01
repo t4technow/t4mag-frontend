@@ -24,7 +24,7 @@ const SinglePost = ({ post }: Props) => {
 		try {
 			const response = await axiosInstance.get(`/api/posts/${post.slug}`);
 		} catch (error) {
-			console.log("effect error");
+			console.log(error);
 		}
 	};
 
