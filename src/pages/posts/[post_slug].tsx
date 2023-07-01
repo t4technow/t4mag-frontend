@@ -1,6 +1,7 @@
 import { GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useEffect } from "react";
 
@@ -32,6 +33,10 @@ const SinglePost = ({ post }: Props) => {
 		fetchPostDetails();
 	}, []);
 
+	const router = useRouter();
+	if (router.isFallback) {
+		return <h1>{`Loading ${post?.title || "post"}...`}</h1>;
+	}
 	return (
 		<>
 			<CustomHead
