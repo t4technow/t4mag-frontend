@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 import Image from "next/image";
-import formatDate from "../helper/formatDate";
+import formatDate from "../../helper/formatDate";
 
 type Props = {
 	post: Post;

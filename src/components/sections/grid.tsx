@@ -1,6 +1,6 @@
 import Flex from "../post/Flex";
 import Large from "../post/Large";
-import { Post, size } from "@/types";
+import { Post, size } from "@/utils/types";
 
 type Props = {
 	posts: Array<Post>;

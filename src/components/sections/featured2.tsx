@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 import Link from "next/link";
 import SectionHeading from "../sectionHeading";
 

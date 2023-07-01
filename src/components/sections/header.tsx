@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../header/navBar";
 import TopBar from "../header/topBar";
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 
 type Props = {
 	posts: Array<Post>;

@@ -13,7 +13,7 @@ import NextNProgress from "nextjs-progressbar";
 
 import { baseUrl } from "../config/constants";
 
-import { Category, Post } from "@/types";
+import { Category, Post } from "@/utils/types";
 
 type Props = {
 	posts: Array<Post>;

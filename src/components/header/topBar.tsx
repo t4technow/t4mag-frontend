@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 type Props = {
 	posts: Array<Post>;
 };

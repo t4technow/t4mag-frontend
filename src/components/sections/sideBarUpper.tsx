@@ -2,7 +2,7 @@ import React from "react";
 import SectionHeading from "../sectionHeading";
 import CircularPost from "../post/CircularPost";
 
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 
 type Props = {
 	posts: Array<Post>;

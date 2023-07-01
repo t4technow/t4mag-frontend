@@ -1,4 +1,4 @@
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 import CircularPost from "../post/CircularPost";
 
 type Props = {

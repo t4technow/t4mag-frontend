@@ -1,5 +1,5 @@
 import Grid from "./grid";
-import { Post, Category } from "@/types";
+import { Post, Category } from "@/utils/types";
 import { useState } from "react";
 import SectionHeading from "../sectionHeading";
 

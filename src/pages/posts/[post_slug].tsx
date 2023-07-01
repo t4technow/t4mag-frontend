@@ -1,11 +1,17 @@
-import AdBanner from "@/components/adBanner";
-import CustomHead from "@/components/customHead";
-import formatDate from "@/components/helper/formatDate";
-import { FullPost, Post } from "@/types";
 import { GetStaticPropsContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { baseUrl } from "../../config/constants";
+
+import { useEffect } from "react";
+
+import { baseUrl } from "@/config/constants";
+import axiosInstance from "@/config/axiosConfig";
+import { FullPost, Post } from "@/utils/types";
+
+import formatDate from "@/helper/formatDate";
+
+import AdBanner from "@/components/adBanner";
+import CustomHead from "@/components/customHead";
 
 import def from "@/assets/vite.svg";
 
@@ -14,6 +20,18 @@ type Props = {
 };
 
 const SinglePost = ({ post }: Props) => {
+	const fetchPostDetails = async () => {
+		try {
+			const response = await axiosInstance.get(`/api/posts/${post.slug}`);
+		} catch (error) {
+			console.log("effect error");
+		}
+	};
+
+	useEffect(() => {
+		fetchPostDetails();
+	}, [post.slug]);
+
 	return (
 		<>
 			<CustomHead

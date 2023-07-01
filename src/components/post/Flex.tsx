@@ -1,7 +1,7 @@
-import { Post, size } from "@/types";
+import { Post, size } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
-import formatDate from "../helper/formatDate";
+import formatDate from "../../helper/formatDate";
 
 type Props = {
 	posts: Array<Post>;

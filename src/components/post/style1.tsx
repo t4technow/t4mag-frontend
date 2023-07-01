@@ -1,9 +1,9 @@
 import Image from "next/image";
 import SectionHeading from "../sectionHeading";
 
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 import Link from "next/link";
-import formatDate from "../helper/formatDate";
+import formatDate from "../../helper/formatDate";
 
 type Props = {
 	title: string;

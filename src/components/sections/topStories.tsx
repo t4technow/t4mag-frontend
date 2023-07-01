@@ -1,4 +1,4 @@
-import { Post } from "@/types";
+import { Post } from "@/utils/types";
 import Image from "next/image";
 import Medium from "../post/Medium";
 
