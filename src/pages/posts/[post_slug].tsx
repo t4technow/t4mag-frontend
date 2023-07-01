@@ -94,7 +94,7 @@ const SinglePost = ({ post }: Props) => {
 											<li>
 												<span className="rt-meta">
 													<i className="far fa-calendar-alt icon"></i>
-													formatDate({post.created_at})
+													{formatDate(post.created_at)}
 												</span>
 											</li>
 											<li>
@@ -387,7 +387,7 @@ const SinglePost = ({ post }: Props) => {
 export default SinglePost;
 
 export async function getStaticPaths() {
-	const response = await fetch(`${baseUrl}/posts/`);
+	const response = await fetch(`${baseUrl}`);
 	const data = await response.json();
 
 	const paths = data.map((post: Post) => {
