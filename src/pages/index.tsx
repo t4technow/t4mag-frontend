@@ -31,6 +31,7 @@ const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 				stopDelayMs={200}
 				height={3}
 				showOnShallow={true}
+				options={{ showSpinner: false }}
 			/>
 			<CustomHead />
 
