@@ -12,7 +12,7 @@ type Props = {
 const CategoryList = ({ categoryList }: Props) => {
 	return (
 		<>
-			<div className="sidebar-wrap mb--40">
+			<div className="sidebar-wrap">
 				<SectionHeading title="Hot Categories" small={true} />
 				<ul className="rt-categories">
 					{categoryList && categoryList.length > 0 ? (

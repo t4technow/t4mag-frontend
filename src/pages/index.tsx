@@ -6,16 +6,17 @@ import Featured2 from "@/components/sections/featured2";
 import Style1 from "@/components/post/style1";
 import AdBanner from "@/components/adBanner";
 import UpperSideBar from "@/components/sections/sideBarUpper";
-
-import { baseUrl } from "../config/constants";
+import TagList from "@/components/sidebar/tags";
 
 import { Category, Post } from "@/utils/types";
+
 import {
 	getAllPosts,
 	getCategories,
 	getPosts,
 	getRecentPosts,
 } from "@/services/apiService";
+import CategoryList from "@/components/sidebar/hotCategories";
 
 type Props = {
 	posts: Array<Post>;
@@ -90,7 +91,8 @@ const index = ({ posts, recentPosts, categories, allPosts }: Props) => {
 						</div>
 						<div className="col-xl-3 sticky-coloum-item sticky-sidebar">
 							<div className="rt-sidebar sticky-wrap">
-								<UpperSideBar posts={posts} />
+								<TagList tagList={categories} />
+								<CategoryList categoryList={categories} />
 							</div>
 						</div>
 					</div>

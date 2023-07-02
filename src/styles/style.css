@@ -9794,10 +9794,21 @@ img:not(.element) {
 	cursor: pointer;
 }
 
+.rt-section-heading.style-2,
 .featured-tab-title:has(.rt-section-heading.style-2) .rt-section-heading {
 	margin-bottom: 30px !important;
 }
 
 .post-sm.white-style .post-title {
 	color: #ebebeb;
+}
+
+.rt-sidebar .sidebar-wrap:not(:last-of-type) {
+	margin-bottom: 40px !important;
+}
+
+@media (min-width: 960px) {
+	.post-pagination-box .content {
+		height: 76px;
+	}
 }
