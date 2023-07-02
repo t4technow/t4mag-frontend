@@ -22,18 +22,6 @@ type Props = {
 };
 
 const SinglePost = ({ post }: Props) => {
-	const fetchPostDetails = async () => {
-		try {
-			const response = await axiosInstance.get(`/posts/${post.slug}`);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	useEffect(() => {
-		fetchPostDetails();
-	}, []);
-
 	const router = useRouter();
 	if (router.isFallback) {
 		return <h1>{`Loading ${post?.title || "post"}...`}</h1>;
