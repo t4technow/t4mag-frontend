@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./navBar.module.css";
+import { Category } from "@/utils/types";
 
-const NavBar = () => {
+type Props = {
+	categories: Array<Category>;
+};
+
+const NavBar = ({ categories }: Props) => {
 	const [isSticky, setIsSticky] = useState(false);
 
 	useEffect(() => {

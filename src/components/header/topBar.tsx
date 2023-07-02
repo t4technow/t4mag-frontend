@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Post } from "@/utils/types";
 type Props = {
-	posts: Array<Post>;
+	recentPosts: Array<Post>;
 };
 
-const TopBar = ({ posts }: Props) => {
+const TopBar = ({ recentPosts }: Props) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentSlide(currentSlide === posts.length - 1 ? 0 : currentSlide + 1);
-		}, 5000);
-		return () => clearInterval(interval);
-	}, [currentSlide, posts.length]);
+		if (recentPosts && recentPosts.length > 0) {
+			const interval = setInterval(() => {
+				setCurrentSlide(
+					currentSlide === recentPosts.length - 1 ? 0 : currentSlide + 1
+				);
+			}, 5000);
+			return () => clearInterval(interval);
+		}
+	}, [currentSlide, recentPosts.length]);
 
 	return (
 		<div className="topbar topbar-style-1" id="topbar-wrap">
@@ -26,14 +30,14 @@ const TopBar = ({ posts }: Props) => {
 							</p>
 							<div className="rt-trending-slider1 swiper-container">
 								<div className="trending-wrapper">
-									{posts.map((post, idx) => {
+									{recentPosts.map((post, idx) => {
 										const isActive = idx === currentSlide;
 										const isPrev =
 											idx === currentSlide - 1 ||
-											(currentSlide === 0 && idx === posts.length - 1);
+											(currentSlide === 0 && idx === recentPosts.length - 1);
 										const isNext =
 											idx === currentSlide + 1 ||
-											(currentSlide === posts.length - 1 && idx === 0);
+											(currentSlide === recentPosts.length - 1 && idx === 0);
 										return (
 											<div
 												className={`trending-slide ${

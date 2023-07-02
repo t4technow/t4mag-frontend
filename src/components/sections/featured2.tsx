@@ -23,7 +23,11 @@ const Featured2 = ({ title, posts }: Props) => {
 						>
 							<div className="rt-post-overlay rt-post-overlay-md">
 								<div className="post-img">
-									<Link href={`posts/${post.slug}`} className="img-link">
+									<Link
+										href="/posts/[post_slug]"
+										as={`/posts/${post.slug}`}
+										className="img-link"
+									>
 										<Image
 											src={post.thumbnail_url}
 											alt={post.title}
@@ -34,7 +38,9 @@ const Featured2 = ({ title, posts }: Props) => {
 								</div>
 								<div className="post-content">
 									<h3 className="post-title bold-underline">
-										<Link href={`posts/${post.slug}`}>{post.title}</Link>
+										<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
+											{post.title}
+										</Link>
 									</h3>
 
 									<div className="post-meta">

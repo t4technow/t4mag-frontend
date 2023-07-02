@@ -16,7 +16,7 @@ const Medium = ({ post }: Props) => {
 		>
 			<div className="rt-post-grid grid-meta">
 				<div className="post-img">
-					<Link href={`posts/${post.slug}`}>
+					<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 						<Image
 							// placeholder="blur"
 							src={post.thumbnail_url}
@@ -34,7 +34,9 @@ const Medium = ({ post }: Props) => {
 						{post.category.title}
 					</Link>
 					<h3 className="post-title">
-						<Link href={`posts/${post.slug}`}>{post.title}</Link>
+						<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
+							{post.title}
+						</Link>
 					</h3>
 					<div className="post-meta">
 						<ul>

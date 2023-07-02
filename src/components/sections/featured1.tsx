@@ -5,11 +5,11 @@ import SectionHeading from "../sectionHeading";
 
 type Props = {
 	title: string;
-	cats: Array<Category>;
+	categories: Array<Category>;
 	posts: Array<Post>;
 };
 
-const FeaturedTabbed = ({ title, cats, posts }: Props) => {
+const FeaturedTabbed = ({ title, categories, posts }: Props) => {
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	return (
@@ -18,7 +18,7 @@ const FeaturedTabbed = ({ title, cats, posts }: Props) => {
 				<SectionHeading title={title} />
 
 				<ul className="nav rt-tab-menu" id="myTab" role="tablist">
-					{cats.map((cat, index) => {
+					{categories.map((cat, index) => {
 						if (cat.post_count > 0) {
 							return (
 								<li key={index} className="menu-item" role="presentation">
@@ -44,7 +44,7 @@ const FeaturedTabbed = ({ title, cats, posts }: Props) => {
 			</div>
 
 			<div className="tab-content" id="myTabContent">
-				{cats.map((cat, index) => {
+				{categories.map((cat, index) => {
 					let filteredPosts: Array<Post> = posts.filter((post) => {
 						return post.category.id === cat.id;
 					});

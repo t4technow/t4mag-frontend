@@ -53,3 +53,8 @@ export interface FullPost extends Post {
 }
 
 export type size= "sm" | "md"
+
+export type SidebarData  = {
+  recentPosts: Post[];
+  categoryList: Category[];
+}

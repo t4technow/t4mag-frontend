@@ -19,7 +19,11 @@ const Large = ({ post, priority = false }: Props) => {
 				>
 					<div className="rt-post-overlay rt-post-overlay-xl layout-1">
 						<div className="post-img">
-							<Link href={`posts/${post.slug}`} className="img-link">
+							<Link
+								href="/posts/[post_slug]"
+								as={`/posts/${post.slug}`}
+								className="img-link"
+							>
 								<Image
 									priority={priority}
 									// placeholder="blur"
@@ -39,7 +43,9 @@ const Large = ({ post, priority = false }: Props) => {
 								{post.category.title}
 							</Link>
 							<h3 className="post-title bold-underline">
-								<Link href={`posts/${post.slug}`}>{post.title}</Link>
+								<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
+									{post.title}
+								</Link>
 							</h3>
 							<div className="post-meta">
 								<ul>

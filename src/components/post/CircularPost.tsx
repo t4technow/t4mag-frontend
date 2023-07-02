@@ -5,13 +5,14 @@ import formatDate from "../../helper/formatDate";
 
 type Props = {
 	post: Post;
+	light?: boolean;
 };
 
-const CircularPost = ({ post }: Props) => {
+const CircularPost = ({ post, light = false }: Props) => {
 	return (
-		<div className="rt-post post-sm style-1">
+		<div className={`rt-post post-sm ${light ? "white-style" : " style-1"}`}>
 			<div className="post-img">
-				<Link href={`posts/${post.slug}`}>
+				<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 					<Image
 						// placeholder="blur"
 						src={post.thumbnail_sm_url}
@@ -29,7 +30,10 @@ const CircularPost = ({ post }: Props) => {
 					{post.category.title}
 				</Link>
 				<h3 className="post-title">
-					<Link href={`posts/${post.slug}`}> {post.title} </Link>
+					<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
+						{" "}
+						{post.title}{" "}
+					</Link>
 				</h3>
 				<span className="rt-meta">
 					<i className="far fa-calendar-alt icon"></i>

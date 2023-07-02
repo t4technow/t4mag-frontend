@@ -42,10 +42,13 @@ const CustomHead = ({ title, desc, author }: Props) => {
 						: "Tech blog covering latest news, reviews and tutorials related to technology."
 				}
 			/>
-			<meta property="og:image" content="http://t4technow.com/logo-dark.png" />
+			<meta
+				property="og:image"
+				content="https://wwww.t4technow.com/images/logo/logo-dark.png"
+			/>
 			<meta
 				property="og:image:secure_url"
-				content="https://t4technow.com/logo-dark.png"
+				content="https://www.t4technow.com/images/logo/logo-dark.png"
 			/>
 			<meta property="og:url" content="https://t4technow.com/" />
 			<meta property="og:type" content="website" />

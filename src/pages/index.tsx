@@ -1,5 +1,3 @@
-import CustomHead from "@/components/customHead";
-import Header from "@/components/sections/header";
 import Swiper from "@/components/sections/Swiper";
 import Grid from "@/components/sections/grid";
 import FeaturedTabbed from "@/components/sections/featured1";
@@ -9,34 +7,26 @@ import Style1 from "@/components/post/style1";
 import AdBanner from "@/components/adBanner";
 import UpperSideBar from "@/components/sections/sideBarUpper";
 
-import NextNProgress from "nextjs-progressbar";
-
 import { baseUrl } from "../config/constants";
 
 import { Category, Post } from "@/utils/types";
+import {
+	getAllPosts,
+	getCategories,
+	getPosts,
+	getRecentPosts,
+} from "@/services/apiService";
 
 type Props = {
 	posts: Array<Post>;
 	recentPosts: Array<Post>;
-	cats: Array<Category>;
+	categories: Array<Category>;
 	allPosts: Array<Post>;
 };
 
-const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
+const index = ({ posts, recentPosts, categories, allPosts }: Props) => {
 	return (
 		<>
-			<NextNProgress
-				color="#29D"
-				startPosition={0.3}
-				stopDelayMs={200}
-				height={3}
-				showOnShallow={true}
-				options={{ showSpinner: false }}
-			/>
-			<CustomHead />
-
-			<Header posts={posts} />
-
 			<section
 				className="rt-feature-section feature-section-style-1 overflow-hidden"
 				data-bg-image="media/elements/element_1.png"
@@ -67,10 +57,10 @@ const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 					<div className="row gutter-30 sticky-coloum-wrap">
 						<div className="col-xl-9 sticky-coloum-item">
 							<div className="featured-area-style-1 overflow-hidden">
-								{allPosts !== null && cats !== null ? (
+								{allPosts !== null && categories !== null ? (
 									<FeaturedTabbed
 										title="What’s New"
-										cats={cats}
+										categories={categories}
 										posts={allPosts}
 									/>
 								) : (
@@ -81,7 +71,9 @@ const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 							</div>
 						</div>
 						<div className="col-xl-3 sticky-coloum-item sticky-sidebar">
-							<UpperSideBar posts={posts} />
+							<div className="rt-sidebar sticky-wrap">
+								<UpperSideBar posts={posts} />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -97,7 +89,9 @@ const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 							</div>
 						</div>
 						<div className="col-xl-3 sticky-coloum-item sticky-sidebar">
-							<UpperSideBar posts={posts} />
+							<div className="rt-sidebar sticky-wrap">
+								<UpperSideBar posts={posts} />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -109,25 +103,32 @@ const index = ({ posts, recentPosts, cats, allPosts }: Props) => {
 export default index;
 
 export async function getStaticProps() {
-	const response = await fetch(`${baseUrl}/posts/`);
-	const data = response.status === 200 ? await response.json() : null;
+	try {
+		const posts = await getPosts();
+		const recentPosts = await getRecentPosts();
+		const categories = await getCategories();
+		const allPosts = await getAllPosts();
 
-	const recent = await fetch(`${baseUrl}/posts/recent`);
-	const recentData = recent.status === 200 ? await recent.json() : null;
-
-	const categories = await fetch(`${baseUrl}/categories`);
-	const cats = categories.status === 200 ? await categories.json() : null;
-
-	const allPosts = await fetch(`${baseUrl}/posts/`);
-	const allPostsData = allPosts.status === 200 ? await allPosts.json() : null;
-
-	return {
-		props: {
-			posts: data && data.length > 0 ? data.slice(0, 4) : null,
-			recentPosts: recentData && recentData.length > 0 ? recentData : null,
-			cats: cats && cats.length > 0 ? cats.slice(0, 4) : null,
-			allPosts: allPostsData && allPostsData.length > 0 ? allPostsData : null,
-		},
-		revalidate: 10,
-	};
+		return {
+			props: {
+				posts: posts && posts.length > 0 ? posts.slice(0, 4) : null,
+				recentPosts: recentPosts && recentPosts.length > 0 ? recentPosts : null,
+				categories:
+					categories && categories.length > 0 ? categories.slice(0, 4) : null,
+				allPosts: allPosts && allPosts.length > 0 ? allPosts : null,
+			},
+			revalidate: 10,
+		};
+	} catch (error) {
+		console.error("Error fetching data:", error);
+		return {
+			props: {
+				posts: null,
+				recentPosts: null,
+				categories: null,
+				allPosts: null,
+			},
+			revalidate: 10,
+		};
+	}
 }

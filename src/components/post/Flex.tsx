@@ -27,7 +27,7 @@ const Flex = ({ posts, size }: Props) => {
 								>
 									{size === "md" ? (
 										<div className="post-img">
-											<Link href={`posts/${post.slug}`}>
+											<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 												<Image
 													//placeholder="blur"
 
@@ -55,7 +55,7 @@ const Flex = ({ posts, size }: Props) => {
 											{post.category.title}
 										</Link>
 										<h3 className="post-title">
-											<Link href={`posts/${post.slug}`}>{post.title}</Link>
+											<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>{post.title}</Link>
 										</h3>
 										<span className="rt-meta">
 											<i className="far fa-calendar-alt icon"></i>
@@ -64,7 +64,7 @@ const Flex = ({ posts, size }: Props) => {
 									</div>
 									{size != "md" ? (
 										<div className="post-img">
-											<Link href={`posts/${post.slug}`}>
+											<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 												<Image
 													// placeholder="blur"
 													src={post.thumbnail_sm_url}

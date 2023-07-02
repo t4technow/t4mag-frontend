@@ -1,20 +1,20 @@
 import React from "react";
 import NavBar from "../header/navBar";
 import TopBar from "../header/topBar";
-import { Post } from "@/utils/types";
+import { Category, Post } from "@/utils/types";
 
 type Props = {
-	posts: Array<Post>;
+	recentPosts: Array<Post>;
+	categories: Array<Category>;
 };
 
-const Header = ({ posts }: Props) => {
+const Header = ({ recentPosts, categories }: Props) => {
 	return (
 		<header className="rt-header sticky-on">
 			<div id="sticky-placeholder"></div>
+			<TopBar recentPosts={recentPosts} />
 
-			<TopBar posts={posts} />
-
-			<NavBar />
+			<NavBar categories={categories} />
 		</header>
 	);
 };

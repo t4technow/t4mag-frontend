@@ -1,6 +1,14 @@
+import Link from "next/link";
 import React from "react";
+import CircularPost from "../post/CircularPost";
+import { Category, Post } from "@/utils/types";
 
-const Footer = () => {
+type Props = {
+	posts: Post[];
+	categories: Category[];
+};
+
+const Footer = ({ posts, categories }: Props) => {
 	return (
 		<footer className="footer">
 			<div className="footer-top footer-style-1">
@@ -13,64 +21,65 @@ const Footer = () => {
 						>
 							<div className="footer-widget">
 								<div className="logo footer-logo">
-									<a className="dark-logo" href="index.html">
+									<Link className="dark-logo" href="/">
 										<img
+											className="element"
 											width="162"
 											height="52"
-											src="/images/logo/logo-light.svg"
-											alt="t4technow"
+											src="/images/logo/logo-light.png"
+											alt="t4technow logo"
 										/>
-									</a>
+									</Link>
 								</div>
 								<p className="text">
-									When an unknown printer took a galley and scrambled it to make
-									specimen book not only five centurie.
+									Tech blog covering latest news, reviews and tutorials related
+									to technology.
 								</p>
 								<ul className="footer-social gutter-15">
 									<li className="social-item">
-										<a
+										<Link
 											href="https://www.facebook.com/"
 											className="social-link fb"
 											target="_blank"
 										>
 											<i className="fab fa-facebook-f"></i>
-										</a>
+										</Link>
 									</li>
 									<li className="social-item">
-										<a
+										<Link
 											href="https://twitter.com/"
 											className="social-link tw"
 											target="_blank"
 										>
 											<i className="fab fa-twitter"></i>
-										</a>
+										</Link>
 									</li>
 									<li className="social-item">
-										<a
+										<Link
 											href="https://vimeo.com/"
 											className="social-link vm"
 											target="_blank"
 										>
 											<i className="fab fa-vimeo-v"></i>
-										</a>
+										</Link>
 									</li>
 									<li className="social-item">
-										<a
+										<Link
 											href="https://www.pinterest.com/"
 											className="social-link pn"
 											target="_blank"
 										>
 											<i className="fab fa-pinterest-p"></i>
-										</a>
+										</Link>
 									</li>
 									<li className="social-item">
-										<a
+										<Link
 											href="https://www.whatsapp.com/"
 											className="social-link wh"
 											target="_blank"
 										>
 											<i className="fab fa-whatsapp"></i>
-										</a>
+										</Link>
 									</li>
 								</ul>
 							</div>
@@ -85,57 +94,12 @@ const Footer = () => {
 								<h3 className="footer-widget-title">Recent Posts</h3>
 
 								<div className="footer-post-list">
-									<div className="item mb--30">
-										<div className="rt-post post-sm white-style">
-											<div className="post-img">
-												<a href="single-post1.html">
-													<img
-														src="media/gallery/post-sm_1.jpg"
-														alt="post"
-														width="100"
-														height="100"
-													/>
-												</a>
+									{posts &&
+										posts?.map((post) => (
+											<div className="item mb--30" key={post.id}>
+												<CircularPost post={post} light={true} />
 											</div>
-											<div className="ms-3 post-content">
-												<h4 className="post-title">
-													<a href="single-post1.html">
-														Top Beste ampute are Speak Market.
-													</a>
-												</h4>
-												<span className="rt-meta">
-													<i className="far fa-calendar-alt icon"></i>
-													DECEMBER 9, 2022
-												</span>
-											</div>
-										</div>
-									</div>
-
-									<div className="item">
-										<div className="rt-post post-sm white-style">
-											<div className="post-img">
-												<a href="single-post1.html">
-													<img
-														src="media/gallery/post-sm_2.jpg"
-														alt="post"
-														width="100"
-														height="100"
-													/>
-												</a>
-											</div>
-											<div className="ms-3 post-content">
-												<h4 className="post-title">
-													<a href="single-post1.html">
-														Top Beste ampute are Speak Market.
-													</a>
-												</h4>
-												<span className="rt-meta">
-													<i className="far fa-calendar-alt icon"></i>
-													DECEMBER 9, 2022
-												</span>
-											</div>
-										</div>
-									</div>
+										))}
 								</div>
 							</div>
 						</div>
@@ -148,36 +112,17 @@ const Footer = () => {
 							<div className="footer-widget">
 								<h3 className="footer-widget-title">Categories</h3>
 								<ul className="widget-list cat-list">
-									<li className="widget-list-item">
-										<a href="politics.html" className="widget-list-link">
-											Politics
-										</a>
-									</li>
-									<li className="widget-list-item">
-										<a href="politics.html" className="widget-list-link">
-											Business
-										</a>
-									</li>
-									<li className="widget-list-item">
-										<a href="technology.html" className="widget-list-link">
-											Technology
-										</a>
-									</li>
-									<li className="widget-list-item">
-										<a href="life-style.html" className="widget-list-link">
-											Health
-										</a>
-									</li>
-									<li className="widget-list-item">
-										<a href="life-style.html" className="widget-list-link">
-											Sports
-										</a>
-									</li>
-									<li className="widget-list-item">
-										<a href="gaming.html" className="widget-list-link">
-											Entertainment
-										</a>
-									</li>
+									{categories &&
+										categories?.map((category) => (
+											<li className="widget-list-item" key={category.id}>
+												<Link
+													href={`category/${category.slug}`}
+													className="widget-list-link"
+												>
+													{category.title}
+												</Link>
+											</li>
+										))}
 								</ul>
 							</div>
 						</div>
@@ -191,14 +136,14 @@ const Footer = () => {
 								<h3 className="footer-widget-title">Instagram</h3>
 								<div className="insta-gallery">
 									<div className="galleryitem">
-										<a href="https://www.instagram.com/">
+										<Link href="https://www.instagram.com/">
 											<img
 												src="media/gallery/ins-gallery_1.jpg"
 												width="100"
 												height="90"
 												alt="gallery1"
 											/>
-										</a>
+										</Link>
 									</div>
 								</div>
 							</div>
@@ -215,11 +160,9 @@ const Footer = () => {
 							data-wow-delay="200ms"
 							data-wow-duration="800ms"
 						>
-							<span className="currentYear"></span> © neeon all right reserved
+							<span className="currentYear"></span> © T4Mag all right reserved
 							by
-							<a href="https://t4technow.tk/" rel="nofollow">
-								T4Technow
-							</a>
+							<Link href="https://t4technow.com/">T4Technow</Link>
 						</p>
 					</div>
 				</div>

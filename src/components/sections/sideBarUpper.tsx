@@ -9,9 +9,9 @@ type Props = {
 };
 const UpperSideBar = ({ posts }: Props) => {
 	return (
-		<div className="rt-sidebar sticky-wrap">
+		
 			<div className="sidebar-wrap mb--40">
-				<SectionHeading title="Popular News" />
+				<SectionHeading title="Popular News" small={true} />
 
 				<div className="post-list">
 					{posts.map((post) => {
@@ -23,7 +23,7 @@ const UpperSideBar = ({ posts }: Props) => {
 					})}
 				</div>
 			</div>
-		</div>
+		
 	);
 };
 

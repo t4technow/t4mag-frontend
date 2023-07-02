@@ -34,7 +34,7 @@ const Style1 = ({ title, posts }: Props) => {
 					>
 						<div className="rt-post post-md style-2 grid-meta">
 							<div className="post-img">
-								<Link href={`posts/${post.slug}`}>
+								<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 									<Image
 										src={post.thumbnail_url}
 										alt={post.title}
@@ -51,7 +51,9 @@ const Style1 = ({ title, posts }: Props) => {
 									{post.category.title}
 								</Link>
 								<h3 className="post-title bold-underline">
-									<Link href={`posts/${post.slug}`}>{post.title}</Link>
+									<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
+										{post.title}
+									</Link>
 								</h3>
 								<p>{truncatedExcerpt}</p>
 								<div className="post-meta">
@@ -83,7 +85,8 @@ const Style1 = ({ title, posts }: Props) => {
 								</div>
 								<div className="btn-wrap mt--25">
 									<Link
-										href={`posts/${post.slug}`}
+										href="/posts/[post_slug]"
+										as={`/posts/${post.slug}`}
 										className="rt-read-more rt-button-animation-out"
 									>
 										Read More
