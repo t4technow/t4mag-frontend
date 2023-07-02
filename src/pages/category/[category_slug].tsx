@@ -4,6 +4,7 @@ import { baseUrl } from "@/config/constants";
 import fetchSidebarData from "@/services/getSidebarData";
 
 import { Category, Post, SidebarData } from "@/utils/types";
+import { GetStaticPropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -13,8 +14,11 @@ type Props = {
 };
 
 const SingleCategory = ({ sidebarData }: Props) => {
-	const route = useRouter();
-	const slug = route.query.category_slug;
+	const router = useRouter();
+	if (router.isFallback) {
+		return <h1>Loading...</h1>;
+	}
+
 	return (
 		<section className="rt-sidebar-section-layout-1">
 			<div className="container">
@@ -62,6 +66,8 @@ export async function getStaticPaths() {
 	const data = await response.json();
 
 	const paths = data.map((category: Category) => {
+		console.log(category.slug);
+
 		return {
 			params: {
 				category_slug: category.slug,
@@ -75,7 +81,9 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context: GetStaticPropsContext) {
+	const { params } = context;
+
 	const sidebarData = await fetchSidebarData();
 	return {
 		props: {
