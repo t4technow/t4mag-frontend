@@ -1,12 +1,10 @@
-import { baseUrl } from "@/config/constants";
-import { Category } from "@/utils/types";
-import { GetStaticPropsContext } from "next";
+import { Tag } from "@/utils/types";
 import React from "react";
 import SectionHeading from "../sectionHeading";
 import Link from "next/link";
 
 type Props = {
-	tagList?: Category[];
+	tagList?: Tag[];
 };
 
 const TagList = ({ tagList }: Props) => {

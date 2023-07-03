@@ -1,19 +1,21 @@
 import Style4 from "@/components/post/style4";
 import Sidebar from "@/components/sidebar/sidebar";
 import { baseUrl } from "@/config/constants";
+import { getCategoryDetails } from "@/services/apiService";
+import fetchCategoryPosts from "@/services/getCategoryPosts";
 import fetchSidebarData from "@/services/getSidebarData";
 
-import { Category, Post, SidebarData } from "@/utils/types";
+import { Category, CategoryDetails, Post, SidebarData } from "@/utils/types";
 import { GetStaticPropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 type Props = {
-	posts: Array<Post>;
+	categoryData: CategoryDetails;
 	sidebarData: SidebarData;
 };
 
-const SingleCategory = ({ sidebarData }: Props) => {
+const SingleCategory = ({ categoryData, sidebarData }: Props) => {
 	const router = useRouter();
 	if (router.isFallback) {
 		return <h1>Loading...</h1>;
@@ -26,7 +28,7 @@ const SingleCategory = ({ sidebarData }: Props) => {
 					<div className="col-xl-9 sticky-coloum-item">
 						<div className="rt-left-sidebar-sapcer-5">
 							<div className="post-list-style-4">
-								{sidebarData.recentPosts.map((post: Post) => (
+								{categoryData.posts?.map((post: Post) => (
 									<Style4 post={post} key={post.id} />
 								))}
 							</div>
@@ -66,8 +68,6 @@ export async function getStaticPaths() {
 	const data = await response.json();
 
 	const paths = data.map((category: Category) => {
-		console.log(category.slug);
-
 		return {
 			params: {
 				category_slug: category.slug,
@@ -84,9 +84,13 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
 	const { params } = context;
 
+	const categoryData = await getCategoryDetails(params?.category_slug);
+
 	const sidebarData = await fetchSidebarData();
+
 	return {
 		props: {
+			categoryData,
 			sidebarData,
 		},
 		revalidate: 10,

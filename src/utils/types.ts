@@ -1,12 +1,18 @@
-export interface Category {
+interface BaseCategory {
   id: number;
   title: string;
   slug: string;
   accent: string;
+}
+export interface Category extends BaseCategory {
   post_count: number;
 }
 
-interface Tag {
+export interface CategoryDetails extends BaseCategory {
+  posts?: Post[]
+}
+
+export interface Tag {
   id: number;
   title: string;
   slug: string;
@@ -57,4 +63,5 @@ export type size= "sm" | "md"
 export type SidebarData  = {
   recentPosts: Post[];
   categoryList: Category[];
+  tagList: Tag[]
 }

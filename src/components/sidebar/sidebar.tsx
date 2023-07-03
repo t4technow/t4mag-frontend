@@ -8,13 +8,13 @@ type Props = {
 };
 
 const Sidebar = ({ sidebarData }: Props) => {
-	const { recentPosts, categoryList } = sidebarData;
+	const { recentPosts, categoryList, tagList } = sidebarData;
 	return (
 		<div className="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
 			<div className="rt-sidebar sticky-wrap">
 				<UpperSideBar posts={recentPosts} />
 				<CategoryList categoryList={categoryList} />
-				<TagList tagList={categoryList} />
+				<TagList tagList={tagList} />
 			</div>
 		</div>
 	);

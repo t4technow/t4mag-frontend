@@ -14,3 +14,5 @@ export const getPosts = () => fetchData("/posts/");
 export const getRecentPosts = () => fetchData("/posts/recent");
 export const getCategories = () => fetchData("/categories");
 export const getAllPosts = () => fetchData("/posts/");
+export const getCategoryDetails = (url?: string | string[]) =>
+	fetchData(`/categories/${url}`);

@@ -1,6 +1,6 @@
 import axiosInstance from "@/config/axiosInstance";
 
-const fetchCategoryPosts = async (category: string) => {
+const fetchCategoryPosts = async (category?: string | string[]) => {
 	try {
 		const categoryResponse = await axiosInstance.get(`/categories/${category}`);
 		const categoryPostList = categoryResponse.data;

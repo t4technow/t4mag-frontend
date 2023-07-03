@@ -23,9 +23,11 @@ type Props = {
 
 const SinglePost = ({ post }: Props) => {
 	const router = useRouter();
+
 	if (router.isFallback) {
 		return <h1>{`Loading ${post?.title || "post"}...`}</h1>;
 	}
+
 	return (
 		<>
 			<CustomHead
@@ -172,18 +174,18 @@ const SinglePost = ({ post }: Props) => {
 											<div className="conent-block">
 												<h3 className="block-tile mb--20">Popular Tags:</h3>
 												<div className="tag-list">
-													<a href="#" className="tag-link">
-														beautiful
-													</a>
-													<a href="#" className="tag-link">
-														travel
-													</a>
-													<a href="#" className="tag-link">
-														technology
-													</a>
-													<a href="#" className="tag-link">
-														politics
-													</a>
+													{post.tags.length > 0
+														? post.tags.map((tag) => (
+																<Link
+																	href="/tags/[tag_slug]"
+																	as={`/tags/${tag.slug}`}
+																	className="tag-link"
+																	key={tag.id}
+																>
+																	{tag.title}
+																</Link>
+														  ))
+														: null}
 												</div>
 											</div>
 										</div>
