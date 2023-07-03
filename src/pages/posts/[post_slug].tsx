@@ -382,12 +382,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 	const response = await fetch(`${baseUrl}/posts/${params?.post_slug}`);
 	const data = await response.json();
 
-	if (!data.slug) {
-		return {
-			notFound: true,
-		};
-	}
-
 	return {
 		props: {
 			post: data,
