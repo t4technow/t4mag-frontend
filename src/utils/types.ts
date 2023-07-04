@@ -12,10 +12,18 @@ export interface CategoryDetails extends BaseCategory {
   posts?: Post[]
 }
 
+export interface CategoryLatestPost extends BaseCategory {
+  latest_post: Post | null
+}
+
 export interface Tag {
   id: number;
   title: string;
   slug: string;
+}
+
+export interface TagDetails extends Tag {
+  posts?: Post[]
 }
 
 interface BaseAuthor {
@@ -61,7 +69,8 @@ export interface FullPost extends Post {
 export type size= "sm" | "md"
 
 export type SidebarData  = {
-  recentPosts: Post[];
-  categoryList: Category[];
-  tagList: Tag[]
+  recentPosts?: Post[];
+  popularPosts?: Post[];
+  categoryList?: Category[];
+  tagList?: Tag[];
 }

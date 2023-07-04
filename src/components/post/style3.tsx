@@ -3,18 +3,19 @@ import { Post } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
+import styles from "./style3.module.css";
+
 type Props = {
 	post: Post;
 };
-
-const Style4 = ({ post }: Props) => {
+const Style3 = ({ post }: Props) => {
 	return (
 		<div
 			className="post-item wow fadeInUp"
 			data-wow-delay="100ms"
 			data-wow-duration="800ms"
 		>
-			<div className="rt-post post-md style-9 grid-meta">
+			<div className="rt-post post-md style-2 style-4  grid-meta">
 				<div className="post-img">
 					<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
 						<Image
@@ -29,9 +30,9 @@ const Style4 = ({ post }: Props) => {
 					<Link
 						href="/category/[category_slug]"
 						as={`/category/${post.category.slug}`}
-						className="rt-cat-primary"
+						className="action"
 					>
-						{post.category.title}
+						Action
 					</Link>
 					<h3 className="post-title">
 						<Link href="/posts/[post_slug]" as={`/posts/${post.slug}`}>
@@ -39,6 +40,7 @@ const Style4 = ({ post }: Props) => {
 						</Link>
 					</h3>
 					<p className="post-excerpt">{post.excerpt}</p>
+
 					<div className="post-meta">
 						<ul>
 							<li>
@@ -72,7 +74,7 @@ const Style4 = ({ post }: Props) => {
 						<Link
 							href="/posts/[post_slug]"
 							as={`/posts/${post.slug}`}
-							className="rt-read-more qodef-button-animation-out"
+							className="rt-read-more rt-button-animation-out"
 						>
 							Read More
 							<svg
@@ -82,14 +84,14 @@ const Style4 = ({ post }: Props) => {
 								xmlSpace="preserve"
 							>
 								<rect
-									className="qodef-button-line"
+									className="rt-button-line"
 									y="7.6"
 									width="34"
 									height=".4"
 								></rect>
-								<g className="qodef-button-cap-fake">
+								<g className="rt-button-cap-fake">
 									<path
-										className="qodef-button-cap"
+										className="rt-button-cap"
 										d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z"
 									></path>
 								</g>
@@ -102,4 +104,4 @@ const Style4 = ({ post }: Props) => {
 	);
 };
 
-export default Style4;
+export default Style3;

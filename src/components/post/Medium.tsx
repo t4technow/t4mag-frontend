@@ -47,7 +47,9 @@ const Medium = ({ post }: Props) => {
 										href={`/author/${post.author.username}`}
 										className="name"
 									>
-										{post.author.username}
+										{post.author.first_name
+											? `${post.author.first_name} ${post.author.last_name}`
+											: post.author.username}
 									</Link>
 								</span>
 							</li>

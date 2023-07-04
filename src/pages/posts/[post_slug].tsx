@@ -3,10 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { useEffect } from "react";
-
 import { baseUrl } from "@/config/constants";
-import axiosInstance from "@/config/axiosInstance";
 import { FullPost, Post } from "@/utils/types";
 
 import formatDate from "@/helper/formatDate";
@@ -16,6 +13,7 @@ import CustomHead from "@/components/customHead";
 
 import def from "@/assets/vite.svg";
 import BreadCrump from "@/components/breadCrump";
+import { readingTime } from "@/helper/readingTime";
 
 type Props = {
 	post: FullPost;
@@ -64,7 +62,9 @@ const SinglePost = ({ post }: Props) => {
 													href={`/authors/${post.author.username}`}
 													className="name"
 												>
-													{post.author.username}
+													{post.author.first_name
+														? `${post.author.first_name} ${post.author.last_name}`
+														: post.author.username}
 												</Link>
 											</span>
 										</li>
@@ -82,7 +82,8 @@ const SinglePost = ({ post }: Props) => {
 										</li>
 										<li>
 											<span className="rt-meta">
-												<i className="far fa-clock icon"></i>2 minute read
+												<i className="far fa-clock icon"></i>
+												{readingTime(post.body)} minute read
 											</span>
 										</li>
 										<li>
@@ -266,7 +267,11 @@ const SinglePost = ({ post }: Props) => {
 										/>
 									</div>
 									<div className="author-content">
-										<h3 className="author-name">{post.author.username}</h3>
+										<h3 className="author-name">
+											{post.author.first_name
+												? `${post.author.first_name} ${post.author.last_name}`
+												: post.author.username}
+										</h3>
 										<span className="author-role">
 											{post.author.is_superuser ? "Admin" : "Author"}
 										</span>
@@ -359,7 +364,7 @@ const SinglePost = ({ post }: Props) => {
 export default SinglePost;
 
 export async function getStaticPaths() {
-	const response = await fetch(`${baseUrl}`);
+	const response = await fetch(`${baseUrl}/posts/`);
 	const data = await response.json();
 
 	const paths = data.map((post: Post) => {

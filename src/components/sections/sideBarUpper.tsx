@@ -5,7 +5,7 @@ import CircularPost from "../post/CircularPost";
 import { Post } from "@/utils/types";
 
 type Props = {
-	posts: Array<Post>;
+	posts?: Array<Post>;
 };
 const UpperSideBar = ({ posts }: Props) => {
 	return (
@@ -13,7 +13,7 @@ const UpperSideBar = ({ posts }: Props) => {
 			<SectionHeading title="Popular News" small={true} />
 
 			<div className="post-list">
-				{posts.map((post) => {
+				{posts?.map((post) => {
 					return (
 						<div className="item" key={post.id}>
 							<CircularPost post={post} />

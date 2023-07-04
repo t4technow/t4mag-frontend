@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./navBar.module.css";
 import { Category } from "@/utils/types";
+import fetchCsrfToken from "@/helper/getCsrfToken";
 
 type Props = {
 	categories: Array<Category>;
@@ -20,7 +21,7 @@ const NavBar = ({ categories }: Props) => {
 	}, []);
 
 	const handleScroll = () => {
-		if (window.scrollY > 0) {
+		if (window.scrollY > 50) {
 			setIsSticky(true);
 		} else {
 			setIsSticky(false);
@@ -82,7 +83,7 @@ const NavBar = ({ categories }: Props) => {
 										</Link>
 										<ul className="main-menu__dropdown">
 											<li className="main-menu__nav_sub">
-												<a href="#">Post Layout</a>
+												<a href="#">Top X</a>
 												<ul>
 													<li>
 														<a href="#">Single Post 01</a>
@@ -109,21 +110,16 @@ const NavBar = ({ categories }: Props) => {
 											Categories{" "}
 										</Link>
 										<ul className="main-menu__dropdown">
-											<li>
-												<a href="life-style.html">Life Style</a>
-											</li>
-											<li>
-												<a href="technology.html">Technology</a>
-											</li>
-											<li>
-												<a href="gaming.html">Gaming</a>
-											</li>
-											<li>
-												<a href="graphics.html">Graphics</a>
-											</li>
-											<li>
-												<a href="politics.html">Politics</a>
-											</li>
+											{categories.map(
+												(category) =>
+													category.post_count > 0 && (
+														<li key={category.id}>
+															<Link href={`category/${category.slug}`}>
+																{category.title}
+															</Link>
+														</li>
+													)
+											)}
 										</ul>
 									</li>
 									<li className="main-menu__nav_sub list">

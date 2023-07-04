@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Sidebar = ({ sidebarData }: Props) => {
-	const { recentPosts, categoryList, tagList } = sidebarData;
+	const { recentPosts, popularPosts, categoryList, tagList } = sidebarData;
 	return (
 		<div className="col-xl-3 col-lg-8 mx-auto sticky-coloum-item">
 			<div className="rt-sidebar sticky-wrap">

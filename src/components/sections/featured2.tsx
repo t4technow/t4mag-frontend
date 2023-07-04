@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Post } from "@/utils/types";
 import Link from "next/link";
 import SectionHeading from "../sectionHeading";
+import formatDate from "@/helper/formatDate";
 
 type Props = {
 	title: string;
@@ -52,14 +53,16 @@ const Featured2 = ({ title, posts }: Props) => {
 														href={`author/${post.author.username}`}
 														className="name"
 													>
-														{post.author.username}
+														{post.author.first_name
+															? `${post.author.first_name} ${post.author.last_name}`
+															: post.author.username}
 													</Link>
 												</span>
 											</li>
 											<li>
 												<span className="rt-meta">
 													<i className="far fa-calendar-alt icon"></i>
-													{post.created_at}
+													{formatDate(post.created_at)}
 												</span>
 											</li>
 										</ul>

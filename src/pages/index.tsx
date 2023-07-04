@@ -8,29 +8,41 @@ import AdBanner from "@/components/adBanner";
 import UpperSideBar from "@/components/sections/sideBarUpper";
 import TagList from "@/components/sidebar/tags";
 
-import { Category, Post } from "@/utils/types";
+import { Category, Post, Tag } from "@/utils/types";
 
 import {
 	getAllPosts,
 	getCategories,
+	getPopularPosts,
 	getPosts,
 	getRecentPosts,
+	getTags,
 } from "@/services/apiService";
 import CategoryList from "@/components/sidebar/hotCategories";
+import PopularWidget from "@/components/post/popularWidget";
 
 type Props = {
-	posts: Array<Post>;
-	recentPosts: Array<Post>;
-	categories: Array<Category>;
-	allPosts: Array<Post>;
+	posts: Post[];
+	allPosts: Post[];
+	recentPosts: Post[];
+	popularPosts: Post[];
+	categories: Category[];
+	tags: Tag[];
 };
 
-const index = ({ posts, recentPosts, categories, allPosts }: Props) => {
+const index = ({
+	posts,
+	recentPosts,
+	popularPosts,
+	allPosts,
+	categories,
+	tags,
+}: Props) => {
 	return (
 		<>
 			<section
 				className="rt-feature-section feature-section-style-1 overflow-hidden"
-				data-bg-image="media/elements/element_1.png"
+				data-bg-image="images/elements/element_1.png"
 			>
 				<div className="container">
 					{posts !== null ? (
@@ -73,7 +85,8 @@ const index = ({ posts, recentPosts, categories, allPosts }: Props) => {
 						</div>
 						<div className="col-xl-3 sticky-coloum-item sticky-sidebar">
 							<div className="rt-sidebar sticky-wrap">
-								<UpperSideBar posts={posts} />
+								<UpperSideBar posts={recentPosts} />
+								<TagList tagList={tags} />
 							</div>
 						</div>
 					</div>
@@ -91,7 +104,7 @@ const index = ({ posts, recentPosts, categories, allPosts }: Props) => {
 						</div>
 						<div className="col-xl-3 sticky-coloum-item sticky-sidebar">
 							<div className="rt-sidebar sticky-wrap">
-								<TagList tagList={categories} />
+								<PopularWidget posts={popularPosts} />
 								<CategoryList categoryList={categories} />
 							</div>
 						</div>
@@ -107,17 +120,28 @@ export default index;
 export async function getStaticProps() {
 	try {
 		const posts = await getPosts();
-		const recentPosts = await getRecentPosts();
-		const categories = await getCategories();
 		const allPosts = await getAllPosts();
+		const recentPosts = await getRecentPosts();
+		const popularPosts = await getPopularPosts();
+		const categories = await getCategories();
+		const tags = await getTags();
 
 		return {
 			props: {
 				posts: posts && posts.length > 0 ? posts.slice(0, 4) : null,
-				recentPosts: recentPosts && recentPosts.length > 0 ? recentPosts : null,
+				allPosts: allPosts && allPosts.length > 0 ? allPosts : null,
+				recentPosts:
+					recentPosts && recentPosts.length > 0
+						? recentPosts.slice(0, 4)
+						: null,
+				popularPosts:
+					popularPosts && popularPosts.length > 0
+						? popularPosts.slice(0, 4)
+						: null,
 				categories:
 					categories && categories.length > 0 ? categories.slice(0, 4) : null,
-				allPosts: allPosts && allPosts.length > 0 ? allPosts : null,
+
+				tags: tags && tags.length > 0 ? tags : null,
 			},
 			revalidate: 10,
 		};
@@ -126,9 +150,11 @@ export async function getStaticProps() {
 		return {
 			props: {
 				posts: null,
-				recentPosts: null,
-				categories: null,
 				allPosts: null,
+				recentPosts: null,
+				popularPosts: null,
+				categories: null,
+				tags: null,
 			},
 			revalidate: 10,
 		};
