@@ -11,6 +11,8 @@ const CustomHead = ({ title, desc, author }: Props) => {
 		<Head>
 			<title>{title ? `${title} | T4Technow` : "T4technow"}</title>
 
+			<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<meta
 				name="description"
@@ -23,9 +25,9 @@ const CustomHead = ({ title, desc, author }: Props) => {
 			<meta
 				name="keywords"
 				content={
-					desc
-						? desc
-						: "Tech blog covering latest news, reviews and tutorials related to technology."
+					title
+						? `t4technow, windows, crack, photoshop, ps, prowshow gold, ${title}`
+						: "t4technow, windows, crack, photoshop, ps, prowshow gold"
 				}
 			/>
 			<meta name="author" content={author ? author : "T4technow"} />
@@ -62,9 +64,12 @@ const CustomHead = ({ title, desc, author }: Props) => {
 						: "Tech blog covering latest news, reviews and tutorials related to technology."
 				}
 			/>
-			<meta name="twitter:image" content="http://t4technow.com/logo-dark.png" />
+			<meta
+				name="twitter:image"
+				content="https://www.t4technow.com/logo-dark.png"
+			/>
 
-			<link rel="canonical" href="https://t4technow.com"></link>
+			<link rel="canonical" href="https://www.t4technow.com"></link>
 		</Head>
 	);
 };

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./navBar.module.css";
 import { Category } from "@/utils/types";
-import fetchCsrfToken from "@/helper/getCsrfToken";
 
 type Props = {
 	categories: Array<Category>;
@@ -12,6 +11,12 @@ type Props = {
 const NavBar = ({ categories }: Props) => {
 	const [isSticky, setIsSticky] = useState(false);
 
+	const user = {
+		is_authenticated: false,
+		profile_pic: { url: "/favicon.ico" },
+		is_author: true,
+		is_superuser: true,
+	};
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
 
@@ -114,7 +119,10 @@ const NavBar = ({ categories }: Props) => {
 												(category) =>
 													category.post_count > 0 && (
 														<li key={category.id}>
-															<Link href={`category/${category.slug}`}>
+															<Link
+																href="category/[category_slug]"
+																as={`category/${category.slug}`}
+															>
 																{category.title}
 															</Link>
 														</li>
@@ -148,9 +156,73 @@ const NavBar = ({ categories }: Props) => {
 
 						<ul className="header-action-items">
 							<li className="item">
-								<span>
+								<span id="search-toggle">
 									<i className="fas fa-search"></i>
 								</span>
+							</li>
+							<li className="main-menu__nav_sub list">
+								<span className="animation">
+									{user.is_authenticated ? (
+										user.profile_pic ? (
+											<Image
+												src={user.profile_pic.url}
+												alt=""
+												className="user-image circle"
+												width={100}
+												height={100}
+											/>
+										) : (
+											<i className="far fa-user-circle"></i>
+										)
+									) : (
+										<i className="far fa-user-circle"></i>
+									)}
+								</span>
+								<ul className="main-menu__dropdown">
+									{user.is_authenticated ? (
+										<>
+											<li>
+												<Link href="">Profile</Link>
+											</li>
+											<li>
+												<Link href="">Following Authors</Link>
+											</li>
+											{user.is_author || user.is_superuser ? (
+												<li>
+													<Link href="">Author Dashboard</Link>
+												</li>
+											) : (
+												<li>
+													<a href="">Become an author</a>
+												</li>
+											)}
+
+											{user.is_superuser ? (
+												<li>
+													<Link href="">Admin Dashboard</Link>
+												</li>
+											) : (
+												<li>
+													<a href="{% url 'user_logout' %}">Logout</a>
+												</li>
+											)}
+										</>
+									) : (
+										<>
+											<li>
+												<a href="{% url 'user_login' %}">Login</a>
+											</li>
+											<li>
+												<a href="{% url 'user_registration' %}">
+													Become a member
+												</a>
+											</li>
+											<li>
+												<a href="{% url 'admin_login' %}">Admin</a>
+											</li>
+										</>
+									)}
+								</ul>
 							</li>
 
 							<li className="item humburger offcanvas-menu-btn menu-status-open">

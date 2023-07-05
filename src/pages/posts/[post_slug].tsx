@@ -14,6 +14,8 @@ import CustomHead from "@/components/customHead";
 import def from "@/assets/vite.svg";
 import BreadCrump from "@/components/breadCrump";
 import { readingTime } from "@/helper/readingTime";
+import { ReactElement } from "react";
+import UserLayout from "@/layout/userLayout";
 
 type Props = {
 	post: FullPost;
@@ -359,6 +361,10 @@ const SinglePost = ({ post }: Props) => {
 			</section>
 		</>
 	);
+};
+
+SinglePost.getLayout = function getLayout(page: ReactElement) {
+	return <UserLayout>{page}</UserLayout>;
 };
 
 export default SinglePost;

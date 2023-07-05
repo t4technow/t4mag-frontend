@@ -20,6 +20,8 @@ import {
 } from "@/services/apiService";
 import CategoryList from "@/components/sidebar/hotCategories";
 import PopularWidget from "@/components/post/popularWidget";
+import UserLayout from "@/layout/userLayout";
+import { ReactElement } from "react";
 
 type Props = {
 	posts: Post[];
@@ -30,7 +32,7 @@ type Props = {
 	tags: Tag[];
 };
 
-const index = ({
+const HomePage = ({
 	posts,
 	recentPosts,
 	popularPosts,
@@ -115,7 +117,11 @@ const index = ({
 	);
 };
 
-export default index;
+HomePage.getLayout = function getLayout(page: ReactElement) {
+	return <UserLayout>{page}</UserLayout>;
+};
+
+export default HomePage;
 
 export async function getStaticProps() {
 	try {

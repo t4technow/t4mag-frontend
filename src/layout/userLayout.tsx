@@ -17,7 +17,7 @@ type UserLayoutProps = {
 function UserLayout({ children }: UserLayoutProps) {
 	const router = useRouter();
 	const isHomePage = router.pathname === "/";
-	const isPostPage = router.pathname.includes("/post/");
+	const isPostPage = router.pathname.includes("/posts/");
 
 	const [recentPosts, setRecentPosts] = useState<Post[]>([]);
 	const [categories, setCategories] = useState<Category[]>([]);
