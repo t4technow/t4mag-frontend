@@ -21,7 +21,9 @@ import {
 import CategoryList from "@/components/sidebar/hotCategories";
 import PopularWidget from "@/components/post/popularWidget";
 import UserLayout from "@/layout/userLayout";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
+
+import { Variants, motion } from "framer-motion";
 
 type Props = {
 	posts: Post[];
@@ -40,11 +42,31 @@ const HomePage = ({
 	categories,
 	tags,
 }: Props) => {
+	const introHeaderVariants: Variants = {
+		hide: {
+			opacity: 0,
+			y: 50,
+		},
+		show: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.6,
+				delay: 0.4,
+				type: "tween",
+			},
+		},
+	};
+
 	return (
 		<>
 			<section
 				className="rt-feature-section feature-section-style-1 overflow-hidden"
 				data-bg-image="images/elements/element_1.png"
+			// initial="hide"
+			// whileInView="show"
+			// exit="hide"
+			// variants={introHeaderVariants}
 			>
 				<div className="container">
 					{posts !== null ? (
@@ -55,7 +77,13 @@ const HomePage = ({
 				</div>
 			</section>
 
-			<section className="rt-main-post-section main-post-section-style-1 section-padding">
+			<section
+				className="rt-main-post-section main-post-section-style-1 section-padding"
+			// initial="hide"
+			// whileInView="show"
+			// exit="hide"
+			// variants={introHeaderVariants}
+			>
 				<div className="container">
 					{recentPosts !== null ? (
 						<Grid posts={recentPosts} priority={true} size="md" />
@@ -67,7 +95,13 @@ const HomePage = ({
 
 			<TopStories title="Top Stories" posts={posts} />
 
-			<section className="whats-new-style-1 section-padding">
+			<section
+				className="whats-new-style-1 section-padding"
+			// initial="hide"
+			// whileInView="show"
+			// exit="hide"
+			// variants={introHeaderVariants}
+			>
 				<div className="container">
 					<div className="row gutter-30 sticky-coloum-wrap">
 						<div className="col-xl-9 sticky-coloum-item">
@@ -95,7 +129,13 @@ const HomePage = ({
 				</div>
 			</section>
 
-			<section className="section-padding">
+			<section
+				className="section-padding"
+			// initial="hide"
+			// whileInView="show"
+			// exit="hide"
+			// variants={introHeaderVariants}
+			>
 				<div className="container">
 					<div className="row gutter-24 sticky-coloum-wrap">
 						<div className="col-xl-9 sticky-coloum-item">
@@ -131,7 +171,7 @@ export async function getStaticProps() {
 		const popularPosts = await getPopularPosts();
 		const categories = await getCategories();
 		const tags = await getTags();
-
+		console.log(posts);
 		return {
 			props: {
 				posts: posts && posts.length > 0 ? posts.slice(0, 4) : null,

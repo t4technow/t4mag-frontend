@@ -10,6 +10,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import fetchSidebarData from "@/services/getSidebarData";
 import PropTypes from "prop-types";
 
+
 type UserLayoutProps = {
 	children: ReactNode;
 };
@@ -18,6 +19,7 @@ function UserLayout({ children }: UserLayoutProps) {
 	const router = useRouter();
 	const isHomePage = router.pathname === "/";
 	const isPostPage = router.pathname.includes("/posts/");
+	const isUserPage = router.pathname.includes("/user/");
 
 	const [recentPosts, setRecentPosts] = useState<Post[]>([]);
 	const [categories, setCategories] = useState<Category[]>([]);
@@ -59,7 +61,7 @@ function UserLayout({ children }: UserLayoutProps) {
 				<Header recentPosts={recentPosts} categories={categories} />
 
 				<main>
-					{!isHomePage && !isPostPage ? (
+					{!isHomePage && !isPostPage && !isUserPage ? (
 						<section className="rt-sidebar-section-layout-1">
 							<div className="container">
 								<div className="row gutter-40 sticky-coloum-wrap">

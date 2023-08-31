@@ -3,8 +3,6 @@ import { Post } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "./style3.module.css";
-
 type Props = {
 	post: Post;
 };

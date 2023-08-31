@@ -11,7 +11,7 @@ const fetchData = async (url: string) => {
 };
 
 export const getPosts = () => fetchData("/posts/");
-export const getAllPosts = () => fetchData("/posts/");
+export const getAllPosts = () => fetchData("");
 export const getRecentPosts = () => fetchData("/posts/recent/");
 export const getPopularPosts = () => fetchData("/posts/popular/");
 

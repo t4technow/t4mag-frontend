@@ -12,7 +12,7 @@ const NavBar = ({ categories }: Props) => {
 	const [isSticky, setIsSticky] = useState(false);
 
 	const user = {
-		is_authenticated: false,
+		is_authenticated: true,
 		profile_pic: { url: "/favicon.ico" },
 		is_author: true,
 		is_superuser: true,
@@ -199,7 +199,9 @@ const NavBar = ({ categories }: Props) => {
 
 											{user.is_superuser ? (
 												<li>
-													<Link href="">Admin Dashboard</Link>
+													<Link href="/admin" as="/admin">
+														Admin Dashboard
+													</Link>
 												</li>
 											) : (
 												<li>

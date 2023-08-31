@@ -1,0 +1,45 @@
+.main .sidebar {
+  width: 15%;
+  max-width: 281px;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.side-menu .d-flex {
+  align-items: center;
+  gap: 25px;
+}
+
+.side-menu li {
+  padding-bottom: 31px;
+}
+
+.side-menu a {
+  text-transform: capitalize;
+  color: var(--light);
+}
+
+.side-menu a .icon:not(.outline)>svg,
+.side-menu a .icon:not(.outline)>svg path {
+  fill: var(--light);
+}
+
+.side-menu li.active a {
+  color: var(--color-primary);
+}
+
+.side-menu li.active a .icon:not(.outline)>svg,
+.side-menu li.active a .icon:not(.outline)>svg path {
+  fill: var(--color-primary);
+}
+
+.main .sidebar .icon>svg {
+  width: 31px;
+  height: 31px;
+}
+
+.main .sidebar .label {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 500;
+}

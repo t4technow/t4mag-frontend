@@ -16,7 +16,7 @@ const TopBar = ({ recentPosts }: Props) => {
 			}, 5000);
 			return () => clearInterval(interval);
 		}
-	}, [currentSlide, recentPosts.length]);
+	}, [currentSlide, recentPosts]);
 
 	return (
 		<div className="topbar topbar-style-1" id="topbar-wrap">

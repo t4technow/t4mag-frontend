@@ -1,10 +1,8 @@
-import "@/assets/css/animate.min.css";
 import "@/assets/css/bootstrap.min.css";
-import "@/assets/css/magnific-popup.css";
+import "@/assets/css/all.min.css";
 
 import "@/styles/globals.css";
 import "@/styles/style.css";
-import "@/assets/css/all.min.css";
 
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";

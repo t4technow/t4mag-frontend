@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import CircularPost from "../post/CircularPost";
 import { Category, Post } from "@/utils/types";
+import Image from "next/image";
 
 type Props = {
 	posts: Post[];
@@ -22,7 +23,7 @@ const Footer = ({ posts, categories }: Props) => {
 							<div className="footer-widget">
 								<div className="logo footer-logo">
 									<Link className="dark-logo" href="/">
-										<img
+										<Image
 											className="element"
 											width="162"
 											height="52"
@@ -137,8 +138,8 @@ const Footer = ({ posts, categories }: Props) => {
 								<div className="insta-gallery">
 									<div className="galleryitem">
 										<Link href="https://www.instagram.com/">
-											<img
-												src="media/gallery/ins-gallery_1.jpg"
+											<Image
+												src="/images/banner/banner_4.jpg"
 												width="100"
 												height="90"
 												alt="gallery1"

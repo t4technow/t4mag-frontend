@@ -2,14 +2,36 @@ import { Post } from "@/utils/types";
 import Image from "next/image";
 import Medium from "../post/Medium";
 
+import { Variants, motion } from "framer-motion";
+
 type Props = {
 	title: string;
 	posts: Array<Post>;
 };
 
 const TopStories = ({ title, posts }: Props) => {
+	const introHeaderVariants: Variants = {
+		hide: {
+			opacity: 0,
+			y: 100,
+		},
+		show: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.5,
+			},
+		},
+	};
+
 	return (
-		<section className="top-stories-style-1 section-padding motion-effects-wrap">
+		<motion.section
+			className="top-stories-style-1 section-padding motion-effects-wrap"
+			initial="hide"
+			whileInView="show"
+			exit="hide"
+			variants={introHeaderVariants}
+		>
 			<ul className="element-list d-none d-xl-block">
 				<li className="motion-effects1">
 					<Image
@@ -61,7 +83,7 @@ const TopStories = ({ title, posts }: Props) => {
 					})}
 				</div>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

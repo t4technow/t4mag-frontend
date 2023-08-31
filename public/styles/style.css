@@ -9483,10 +9483,3 @@ img:not(.element) {
 	left: 0;
 	background: tomato;
 }
-
-.post-wrap-style-3 .post-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}

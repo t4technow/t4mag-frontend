@@ -50,6 +50,8 @@ export interface Post {
 	created_at: string;
 	thumbnail_url: string;
   thumbnail_sm_url: string
+  views?: number
+
 };
 
 
